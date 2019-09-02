@@ -29,9 +29,9 @@ class GithubService
     repos_json.map{|repo| GithubRepo.new(repo)}
   end
 
-  def create_repo
+  def create_repo(name)
     response = Faraday.post "https://api.github.com/user/repos",
-     {name: params[:name]}.to_json,
+     {name: name}.to_json,
       {'Authorization' => "token #{self.access_token}", 'Accept' => 'application/json'}
   end
 end
